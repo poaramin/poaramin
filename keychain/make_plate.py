@@ -11,11 +11,12 @@ from shapely.ops import unary_union
 from make_keychain import BOLD, OUT, extrude, fit, rounded_rect, text_shape
 
 # ---- ข้อความบนป้าย ----
-PLATE_TEXT = "รวย 888"
+LINE1 = "รวย"
+LINE2 = "888"
 PROVINCE = "เชียงใหม่"
 
-# ---- ขนาด (มม.) — สัดส่วนใกล้ป้ายจริง 34 x 15 ซม. ----
-W, H = 64.0, 28.0
+# ---- ขนาด (มม.) — ป้าย 3 บรรทัด ----
+W, H = 56.0, 42.0
 CORNER = 2.5
 BASE_T = 2.4               # ความหนาฐาน (ขาว)
 RELIEF_T = 0.8             # ความสูงส่วนนูน (ดำ)
@@ -38,12 +39,13 @@ def build():
     ring = Point(tab_c).buffer(TAB_R - 0.9).difference(Point(tab_c).buffer(HOLE_R + 0.7))
 
     # หมุดยึดป้ายสองข้าง (ตกแต่งเหมือนป้ายจริง)
-    bolts = [Point(x, H - 4.2).buffer(0.9, quad_segs=12) for x in (6.0, W - 6.0)]
+    bolts = [Point(x, H - 5.0).buffer(0.9, quad_segs=12) for x in (6.0, W - 6.0)]
 
-    top = fit(text_shape(PLATE_TEXT, BOLD), W / 2, 17.0, W - 14, 13.0)
-    prov = fit(text_shape(PROVINCE), W / 2, 6.4, 30, 6.8)
+    l1 = fit(text_shape(LINE1, BOLD), W / 2, 32.0, W - 24, 9.0)
+    l2 = fit(text_shape(LINE2, BOLD), W / 2, 19.5, W - 16, 10.0)
+    prov = fit(text_shape(PROVINCE), W / 2, 6.8, 32, 6.8)
 
-    black = unary_union([border, ring, top, prov, *bolts]).intersection(base)
+    black = unary_union([border, ring, l1, l2, prov, *bolts]).intersection(base)
     return base, black, extrude(base, BASE_T), extrude(black, RELIEF_T, BASE_T)
 
 

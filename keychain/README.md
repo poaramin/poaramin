@@ -33,7 +33,7 @@ python3 make_keychain.py
 
 ![plate preview](output/plate_preview.png)
 
-แบบป้ายรถยนต์ส่วนบุคคล พื้นขาว ตัวอักษร/ขอบสีดำนูน 0.8 มม. ขนาด 64 × 28 มม. (รวมหูห้อย ~35 มม.) หนา 3.2 มม.
+แบบป้ายรถยนต์ส่วนบุคคล พื้นขาว ตัวอักษร/ขอบสีดำนูน 0.8 มม. จัด 3 บรรทัด (รวย / 888 / เชียงใหม่) ขนาด 56 × 42 มม. (รวมหูห้อย ~49 มม.) หนา 3.2 มม.
 
 | ไฟล์ | ใช้ทำอะไร |
 |---|---|
@@ -41,4 +41,4 @@ python3 make_keychain.py
 | `plate_base_white.stl` / `plate_relief_black.stl` | แยกสีเป็น STL |
 | `plate_keychain_single.stl` | ชิ้นเดียว — ตั้ง Filament change ที่ **2.4 มม.** (ขาว → ดำ) |
 
-เปลี่ยนข้อความได้ที่ `PLATE_TEXT` / `PROVINCE` ใน `make_plate.py` แล้วรัน `python3 make_plate.py`
+เปลี่ยนข้อความได้ที่ `LINE1` / `LINE2` / `PROVINCE` ใน `make_plate.py` แล้วรัน `python3 make_plate.py`

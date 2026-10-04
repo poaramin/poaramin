@@ -200,8 +200,9 @@ def main():
     green_m.export(OUT / "chiangmai_base_green.stl")
     white_m.export(OUT / "chiangmai_relief_white.stl")
     trimesh.util.concatenate([green_m, white_m]).export(OUT / "chiangmai_keychain_single.stl")
-    scene = trimesh.Scene({"base_green": green_m, "relief_white": white_m})
-    scene.export(OUT / "chiangmai_keychain_2color.3mf")
+    from bambu3mf import export_bambu_3mf
+    export_bambu_3mf(OUT / "chiangmai_keychain_2color.3mf", "chiangmai_keychain",
+                     [("base_green", green_m, "#00704A"), ("relief_white", white_m, "#FFFFFF")])
     preview(base, white, OUT / "preview.png")
     for name, m in [("green", green_m), ("white", white_m)]:
         print(f"{name}: watertight={m.is_watertight} bounds={np.round(m.bounds, 2).tolist()}")

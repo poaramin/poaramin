@@ -26,3 +26,19 @@ pip install trimesh shapely manifold3d numpy matplotlib fonttools uharfbuzz netw
 python3 make_keychain.py
 ```
 ฟอนต์ Kanit (SIL OFL, อยู่ใน `../fonts/`) จัดรูปสระ/วรรณยุกต์ไทยด้วย HarfBuzz
+
+---
+
+# พวงกุญแจป้ายทะเบียนรถ "รวย 888 เชียงใหม่"
+
+![plate preview](output/plate_preview.png)
+
+แบบป้ายรถยนต์ส่วนบุคคล พื้นขาว ตัวอักษร/ขอบสีดำนูน 0.8 มม. ขนาด 64 × 28 มม. (รวมหูห้อย ~35 มม.) หนา 3.2 มม.
+
+| ไฟล์ | ใช้ทำอะไร |
+|---|---|
+| `plate_keychain_2color.3mf` | 2 ชิ้นแยกสี: base = ขาว, relief = ดำ |
+| `plate_base_white.stl` / `plate_relief_black.stl` | แยกสีเป็น STL |
+| `plate_keychain_single.stl` | ชิ้นเดียว — ตั้ง Filament change ที่ **2.4 มม.** (ขาว → ดำ) |
+
+เปลี่ยนข้อความได้ที่ `PLATE_TEXT` / `PROVINCE` ใน `make_plate.py` แล้วรัน `python3 make_plate.py`
